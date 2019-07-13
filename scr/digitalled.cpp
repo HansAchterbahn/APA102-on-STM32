@@ -5,14 +5,34 @@
  *      Author: Remko welling
  *      		remko@rfsee.nl
  *
+ *
+ * SPI Settings
+ * ------------
+ * hspi1.Instance = SPI1;
+ * hspi1.Init.Mode = SPI_MODE_MASTER;
+ * hspi1.Init.Direction = SPI_DIRECTION_1LINE;
+ * hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
+ * hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
+ * hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
+ * hspi1.Init.NSS = SPI_NSS_SOFT;
+ * hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_32;
+ * hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
+ * hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
+ * hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+ * hspi1.Init.CRCPolynomial = 7;
+ * hspi1.Init.CRCLength = SPI_CRC_LENGTH_DATASIZE;
+ * hspi1.Init.NSSPMode = SPI_NSS_PULSE_DISABLE;
+ *
  */
 
 #include "stdint.h"
-#include "..\libraries\digitalled.h"
-#include"..\Libraries\myspi.h"
+#include "digitalled.h"
 
 const uint8_t	OUT_OF_RANGE = 1;
 const uint8_t 	RANGE_OK = 0;
+const uint8_t LED_START_FRAME_SIZE = 4;		// 0x00, 0x00, 0x00, 0x00
+const uint8_t LED_END_FRAME_SIZE = 4; 		// 0xFF, 0xFF, 0xFF, 0xFF
+uint8_t SpiSendFrame[LED_START_FRAME_SIZE + 4 * LED_FRAME_SIZE + LED_END_FRAME_SIZE];
 
 digitalled::digitalled()
 :
@@ -116,29 +136,34 @@ void digitalled::update(bool forceUpdate)
 {
 	if(_frameModified | forceUpdate)
 	{
-	// Send start of frame (0x00000000)
-	_spiInterface.sendRaw(0x00);
-	_spiInterface.sendRaw(0x00);
-	_spiInterface.sendRaw(0x00);
-	_spiInterface.sendRaw(0x00);
+		// add start of frame (0x00000000)
+		for(int i = 0; i < LED_START_FRAME_SIZE; i++)
+		{
+			SpiSendFrame[i] = 0x00;
+		}
+//		HAL_SPI_Transmit(&spi1, &LED_START_FRAME, sizeof(LED_START_FRAME), 10);
 
-	// Send all LED packets of the frame
-	for (int led = 0; led < LED_FRAME_SIZE; led++)
-	{
-		_spiInterface.sendRaw((uint8_t)(_digitalLedframe[led].data >> 24)); // Send INIT and GLOBAL
-		_spiInterface.sendRaw((uint8_t)(_digitalLedframe[led].data >> 16)); // Send BLUE
-		_spiInterface.sendRaw((uint8_t)(_digitalLedframe[led].data >> 8));  // Send GREEN
-		_spiInterface.sendRaw((uint8_t)(_digitalLedframe[led].data));		// Send RED
+		// add all LED packets of the frame
+		for (int led = 0; led < LED_FRAME_SIZE; led++)
+		{
+			SpiSendFrame[LED_START_FRAME_SIZE + led] = _digitalLedframe[led].FieldsOut.CMD;		// Add INIT and GLOBAL to SPI send frame
+			SpiSendFrame[LED_START_FRAME_SIZE + led] = _digitalLedframe[led].FieldsOut.BLUE; 	// Add BLUE to SPI send frame
+			SpiSendFrame[LED_START_FRAME_SIZE + led] = _digitalLedframe[led].FieldsOut.GREEN;	// Add GREEN to SPI send frame
+			SpiSendFrame[LED_START_FRAME_SIZE + led] = _digitalLedframe[led].FieldsOut.RED;		// Add RED to SPI send frame
+		}
+
+		// add end of frame (0xffffffff)
+		for(int i = 0; i < 4; i++)
+		{
+			SpiSendFrame[LED_FRAME_SIZE + i] = 0xFF;
+		}
+
+		// send spi frame with all led values
+		HAL_SPI_Transmit(&spi1, &SpiSendFrame, sizeof(SpiSendFrame), 10);
 	}
 
-	// Send end of frame (0xffffffff)
-	_spiInterface.sendRaw(0xff);
-	_spiInterface.sendRaw(0xff);
-	_spiInterface.sendRaw(0xff);
-	_spiInterface.sendRaw(0xff);
-
-	}
 	_frameModified = false; // reset frame modified identifier.
+
 }
 
 uint8_t digitalled::TestPosition(const uint8_t led)

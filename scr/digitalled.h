@@ -18,13 +18,14 @@
 #ifndef DIGITALLED_H_
 #define DIGITALLED_H_
 
-#define LED_FRAME_SIZE   60	///< \define number of LEDs in the chain
+#define LED_FRAME_SIZE   16	///< \define number of LEDs in the chain
 
-#include"..\Libraries\myspi.h"
+// #include"..\Libraries\myspi.h"
 #include <stdint.h>
+#include "main.h"
 
 
-#include "touchdisplay.h"
+// #include "touchdisplay.h"
 
 extern const uint8_t OUT_OF_RANGE;	///< OUT_OF_RANGE value
 extern const uint8_t RANGE_OK;		///< RANGE OK value
@@ -109,7 +110,7 @@ public:
 
 private:
 
-	myspi _spiInterface; ///< SPI interface object to send LED data to.
+//	myspi _spiInterface; ///< SPI interface object to send LED data to.
 
 	/// \todo add documentation
 	union
@@ -124,6 +125,14 @@ private:
 							// MSB
 		} fields;					///< All fields in a LED packet
 		uint32_t data; 				///< RAW LED packet data
+		struct
+				{					// LSB
+					uint32_t RED    : 8;	///< RED led intensity from 0 (off) to 255 (max)
+					uint32_t GREEN  : 8; 	///< GREEN led intensity from 0 (off) to 255 (max)
+					uint32_t BLUE   : 8; 	///< BLUE led intensity from 0 (off) to 255 (max)
+					uint32_t CMD	: 8; 	///< Global intensity for all LEDs && frame start with
+									// MSB
+				} FieldsOut;
 	} _digitalLedframe[LED_FRAME_SIZE];	///< Frame of LED packets
 
 	bool _frameModified; ///< Identifier to indicate that frame modified.
