@@ -23,35 +23,21 @@
 #define SHIFT_BLUE		0
 
 /* variables */
-struct _LightEffectColorRGB{
-	uint8_t r;		// red
-	uint8_t g;		// green
-	uint8_t b;		// blue
-	uint8_t a;		// alpha
-};
-
-union
-{
-	struct{
-		uint8_t r;		// red
-		uint8_t g;		// green
-		uint8_t b;		// blue
-		uint8_t a;		// alpha
-	}separate;			// Color separate in red, green, blue and alpha
-	uint32_t rgba;		// 0xrrggbbaa
-} _LightEffectColor;
+uint32_t _LightEffectColor; 		// saves the actual dominant LED light color
 
 
 /* funktions */
-struct _LightEffectColorRGB LightEffect_randomTrueColor();
-struct _LightEffectColorRGB LightEffect_randomMixedColor();
 
-void LightEffect_fadeIn(uint8_t r, uint8_t g, uint8_t b, uint8_t Steps, uint8_t DelayTime);
-void LightEffect_fadeOut(uint8_t r, uint8_t g, uint8_t b, uint8_t Steps, uint8_t DelayTime);
-void LightEffect_fadeInFadeOut(uint8_t r, uint8_t g, uint8_t b, uint8_t Steps, uint8_t DelayTime);
+/* light effects */
+uint32_t LightEffect_randomTrueColor();
+uint32_t LightEffect_randomMixedColor();
 
-void LightEffect_setColor(uint8_t r, uint8_t g, uint8_t b);
-void LightEffect_fadeToColor(uint8_t r, uint8_t g, uint8_t b, uint8_t Steps, uint8_t DelayTime);
+void LightEffect_fadeIn(uint32_t argb, uint8_t Steps, uint8_t DelayTime);
+void LightEffect_fadeOut(uint32_t argb, uint8_t Steps, uint8_t DelayTime);
+void LightEffect_fadeInFadeOut(uint32_t argb, uint8_t Steps, uint8_t DelayTime);
+
+void LightEffect_setColor(uint32_t argb);
+void LightEffect_fadeToColor(uint32_t argb, uint8_t Steps, uint8_t DelayTime);
 
 void LightEffect_rotatingRight(uint32_t foreground, uint32_t background, uint8_t DelayTime);
 void LightEffect_rotatingLeft(uint32_t foreground, uint32_t background, uint8_t DelayTime);
@@ -59,13 +45,35 @@ void LightEffect_rotatingLeft(uint32_t foreground, uint32_t background, uint8_t 
 void LightEffect_rotatingFadeRight(uint32_t foreground, uint32_t background, uint8_t DelayTime);
 void LightEffect_rotatingFadeLeft(uint32_t foreground, uint32_t background, uint8_t DelayTime);
 
+void LightEffect_scanLeftToRight(uint32_t foreground, uint32_t background, uint8_t DelayTime);
+void LightEffect_scanRightToLeft(uint32_t foreground, uint32_t background, uint8_t DelayTime);
+void LightEffect_scanUpToDown(uint32_t foreground, uint32_t background, uint8_t DelayTime);
+void LightEffect_scanDownToUp(uint32_t foreground, uint32_t background, uint8_t DelayTime);
 
-uint32_t LightEffect_giveColorRgb(uint8_t r, uint8_t g, uint8_t b);
-uint32_t LightEffect_giveColorArgb(uint8_t a, uint8_t r, uint8_t g, uint8_t b);
-uint8_t LightEffect_giveColorR(uint32_t rgb);
-uint8_t LightEffect_giveColorG(uint32_t rgb);
-uint8_t LightEffect_giveColorB(uint32_t rgb);
-uint8_t LightEffect_giveColorA(uint32_t rgb);
+void LightEffect_fillLeftToRight(uint32_t foreground, uint32_t background, uint8_t DelayTime);
+void LightEffect_fillRightToLeft(uint32_t foreground, uint32_t background, uint8_t DelayTime);
+void LightEffect_fillUpToDown(uint32_t foreground, uint32_t background, uint8_t DelayTime);
+void LightEffect_fillDownToUp(uint32_t foreground, uint32_t background, uint8_t DelayTime);
+
+void LightEffect_fill2Lines(uint32_t foreground, uint32_t background, uint8_t DelayTime);
+void LightEffect_fill4Lines(uint32_t foreground, uint32_t background, uint8_t DelayTime);
+void LightEffect_fill2Columns(uint32_t foreground, uint32_t background, uint8_t DelayTime);
+void LightEffect_fill4Columns(uint32_t foreground, uint32_t background, uint8_t DelayTime);
+
+
+
+/* color transformations */
+uint32_t LightEffect_getColorRgb(uint8_t r, uint8_t g, uint8_t b);
+uint32_t LightEffect_getColorArgb(uint8_t a, uint8_t r, uint8_t g, uint8_t b);
+uint8_t LightEffect_getColorRed(uint32_t argb);
+uint8_t LightEffect_getColorGreen(uint32_t argb);
+uint8_t LightEffect_getColorBlue(uint32_t argb);
+uint8_t LightEffect_getColorAlpha(uint32_t argb);
+
+/* light effect combinations */
+void LightEffect_comboRotation01(uint8_t DelayTime);
+void LightEffect_comboFill01(uint8_t DelayTime);
+
 
 
 
