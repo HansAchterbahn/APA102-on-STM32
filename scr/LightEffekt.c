@@ -188,3 +188,249 @@ void LightEffect_fadeToColor(uint8_t r, uint8_t g, uint8_t b, uint8_t Steps, uin
 	_LightEffectColor.separate.b = b;
 
 }
+
+
+
+void LightEffect_rotatingRight(uint32_t foreground, uint32_t background, uint8_t DelayTime)
+{
+	digiLed_setAllRGB(background);
+	digiLed_setRGB(1, foreground);
+	digiLed_setRGB(5, foreground);
+	digiLed_setRGB(10, foreground);
+	digiLed_setRGB(14, foreground);
+	digiLed_update(FALSE);
+	HAL_Delay(DelayTime);
+
+	digiLed_setAllRGB(background);
+	digiLed_setRGB(2, foreground);
+	digiLed_setRGB(6, foreground);
+	digiLed_setRGB(9, foreground);
+	digiLed_setRGB(13, foreground);
+	digiLed_update(FALSE);
+	HAL_Delay(DelayTime);
+
+	digiLed_setAllRGB(background);
+	digiLed_setRGB(3, foreground);
+	digiLed_setRGB(6, foreground);
+	digiLed_setRGB(9, foreground);
+	digiLed_setRGB(12, foreground);
+	digiLed_update(FALSE);
+	HAL_Delay(DelayTime);
+
+	digiLed_setAllRGB(background);
+	digiLed_setRGB(7, foreground);
+	digiLed_setRGB(6, foreground);
+	digiLed_setRGB(9, foreground);
+	digiLed_setRGB(8, foreground);
+	digiLed_update(FALSE);
+	HAL_Delay(DelayTime);
+
+	digiLed_setAllRGB(background);
+	digiLed_setRGB(11, foreground);
+	digiLed_setRGB(10, foreground);
+	digiLed_setRGB(5, foreground);
+	digiLed_setRGB(4, foreground);
+	digiLed_update(FALSE);
+	HAL_Delay(DelayTime);
+
+	digiLed_setAllRGB(background);
+	digiLed_setRGB(15, foreground);
+	digiLed_setRGB(10, foreground);
+	digiLed_setRGB(5, foreground);
+	digiLed_setRGB(0, foreground);
+	digiLed_update(FALSE);
+	HAL_Delay(DelayTime);
+}
+
+
+
+
+void LightEffect_rotatingLeft(uint32_t foreground, uint32_t background, uint8_t DelayTime)
+{
+	digiLed_setAllRGB(background);
+	digiLed_setRGB(1, foreground);
+	digiLed_setRGB(5, foreground);
+	digiLed_setRGB(10, foreground);
+	digiLed_setRGB(14, foreground);
+	digiLed_update(FALSE);
+	HAL_Delay(DelayTime);
+
+	digiLed_setAllRGB(background);
+	digiLed_setRGB(15, foreground);
+	digiLed_setRGB(10, foreground);
+	digiLed_setRGB(5, foreground);
+	digiLed_setRGB(0, foreground);
+	digiLed_update(FALSE);
+	HAL_Delay(DelayTime);
+
+	digiLed_setAllRGB(background);
+	digiLed_setRGB(11, foreground);
+	digiLed_setRGB(10, foreground);
+	digiLed_setRGB(5, foreground);
+	digiLed_setRGB(4, foreground);
+	digiLed_update(FALSE);
+	HAL_Delay(DelayTime);
+
+	digiLed_setAllRGB(background);
+	digiLed_setRGB(7, foreground);
+	digiLed_setRGB(6, foreground);
+	digiLed_setRGB(9, foreground);
+	digiLed_setRGB(8, foreground);
+	digiLed_update(FALSE);
+	HAL_Delay(DelayTime);
+
+	digiLed_setAllRGB(background);
+	digiLed_setRGB(3, foreground);
+	digiLed_setRGB(6, foreground);
+	digiLed_setRGB(9, foreground);
+	digiLed_setRGB(12, foreground);
+	digiLed_update(FALSE);
+	HAL_Delay(DelayTime);
+
+	digiLed_setAllRGB(background);
+	digiLed_setRGB(2, foreground);
+	digiLed_setRGB(6, foreground);
+	digiLed_setRGB(9, foreground);
+	digiLed_setRGB(13, foreground);
+	digiLed_update(FALSE);
+	HAL_Delay(DelayTime);
+}
+
+
+
+
+void LightEffect_rotatingFadeRight(uint32_t foreground, uint32_t background, uint8_t DelayTime)
+{
+	digiLed_setAllRGB(background);
+	digiLed_update(FALSE);
+	HAL_Delay(DelayTime);
+
+	digiLed_setRGB(1, foreground);
+	digiLed_setRGB(5, foreground);
+	digiLed_setRGB(10, foreground);
+	digiLed_setRGB(14, foreground);
+	digiLed_update(FALSE);
+	HAL_Delay(DelayTime);
+
+	digiLed_setRGB(2, foreground);
+	digiLed_setRGB(6, foreground);
+	digiLed_setRGB(9, foreground);
+	digiLed_setRGB(13, foreground);
+	digiLed_update(FALSE);
+	HAL_Delay(DelayTime);
+
+	digiLed_setRGB(3, foreground);
+	digiLed_setRGB(6, foreground);
+	digiLed_setRGB(9, foreground);
+	digiLed_setRGB(12, foreground);
+	digiLed_update(FALSE);
+	HAL_Delay(DelayTime);
+
+	digiLed_setRGB(7, foreground);
+	digiLed_setRGB(6, foreground);
+	digiLed_setRGB(9, foreground);
+	digiLed_setRGB(8, foreground);
+	digiLed_update(FALSE);
+	HAL_Delay(DelayTime);
+
+	digiLed_setRGB(11, foreground);
+	digiLed_setRGB(10, foreground);
+	digiLed_setRGB(5, foreground);
+	digiLed_setRGB(4, foreground);
+	digiLed_update(FALSE);
+	HAL_Delay(DelayTime);
+
+	digiLed_setRGB(15, foreground);
+	digiLed_setRGB(10, foreground);
+	digiLed_setRGB(5, foreground);
+	digiLed_setRGB(0, foreground);
+	digiLed_update(FALSE);
+	HAL_Delay(DelayTime);
+}
+
+
+
+
+void LightEffect_rotatingFadeLeft(uint32_t foreground, uint32_t background, uint8_t DelayTime)
+{
+	digiLed_setAllRGB(background);
+	digiLed_update(FALSE);
+	HAL_Delay(DelayTime);
+
+	digiLed_setRGB(1, foreground);
+	digiLed_setRGB(5, foreground);
+	digiLed_setRGB(10, foreground);
+	digiLed_setRGB(14, foreground);
+	digiLed_update(FALSE);
+	HAL_Delay(DelayTime);
+
+	digiLed_setRGB(15, foreground);
+	digiLed_setRGB(10, foreground);
+	digiLed_setRGB(5, foreground);
+	digiLed_setRGB(0, foreground);
+	digiLed_update(FALSE);
+	HAL_Delay(DelayTime);
+
+	digiLed_setRGB(11, foreground);
+	digiLed_setRGB(10, foreground);
+	digiLed_setRGB(5, foreground);
+	digiLed_setRGB(4, foreground);
+	digiLed_update(FALSE);
+	HAL_Delay(DelayTime);
+
+	digiLed_setRGB(7, foreground);
+	digiLed_setRGB(6, foreground);
+	digiLed_setRGB(9, foreground);
+	digiLed_setRGB(8, foreground);
+	digiLed_update(FALSE);
+	HAL_Delay(DelayTime);
+
+	digiLed_setRGB(3, foreground);
+	digiLed_setRGB(6, foreground);
+	digiLed_setRGB(9, foreground);
+	digiLed_setRGB(12, foreground);
+	digiLed_update(FALSE);
+	HAL_Delay(DelayTime);
+
+	digiLed_setRGB(2, foreground);
+	digiLed_setRGB(6, foreground);
+	digiLed_setRGB(9, foreground);
+	digiLed_setRGB(13, foreground);
+	digiLed_update(FALSE);
+	HAL_Delay(DelayTime);
+}
+
+
+
+uint32_t LightEffect_giveColorRgb(uint8_t r, uint8_t g, uint8_t b)
+{
+	return (uint32_t)(r << SHIFT_RED | g << SHIFT_GREEN | b << SHIFT_BLUE);
+}
+
+uint32_t LightEffect_giveColorArgb(uint8_t a, uint8_t r, uint8_t g, uint8_t b)
+{
+	return (uint32_t)(a << SHIFT_ALPHA | r << SHIFT_RED | g << SHIFT_GREEN | b << SHIFT_BLUE);
+}
+
+uint8_t LightEffect_giveColorAlpha(uint32_t rgb)
+{
+	return (uint8_t)((MASK_ALPHA & rgb) >> SHIFT_ALPHA);
+}
+
+
+uint8_t LightEffect_giveColorRed(uint32_t rgb)
+{
+	return (uint8_t)((MASK_RED & rgb) >> SHIFT_RED);
+}
+
+
+uint8_t LightEffect_giveColorGreen(uint32_t rgb)
+{
+	return (uint8_t)((MASK_GREEN & rgb) >> SHIFT_GREEN);
+}
+
+
+uint8_t LightEffect_giveColorBlue(uint32_t rgb)
+{
+	return (uint8_t)((MASK_BLUE & rgb) >> SHIFT_BLUE);
+}
