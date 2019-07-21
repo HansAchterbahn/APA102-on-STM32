@@ -37,7 +37,7 @@
  */
 
 /* includes */
-#include "digitalled.h"
+#include "DigiLed.h"
 #include "stdint.h"
 
 
@@ -51,7 +51,7 @@ SPI_HandleTypeDef *_spiHandler;
 /**
  *  @brief Initialize digital led class
  */
-void digiLed_init(SPI_HandleTypeDef *hspi)
+void DigiLed_init(SPI_HandleTypeDef *hspi)
 {
 	_frameModified = TRUE; 		// Initial set to true to force update after initialization of frame buffer
 
@@ -67,7 +67,7 @@ void digiLed_init(SPI_HandleTypeDef *hspi)
 		_digitalLedframe[led].FieldsIn.GREEN = 0x00;
 		_digitalLedframe[led].FieldsIn.RED = 0x00;
 	}
-	digiLed_update(FALSE); // Update frame buffer using the value of _frameModified as set in initialiser.
+	DigiLed_update(FALSE); // Update frame buffer using the value of _frameModified as set in initialiser.
 }
 
 
@@ -79,9 +79,9 @@ void digiLed_init(SPI_HandleTypeDef *hspi)
  * @param green intensity of the green color from 0 to 255
  * @param red intensity of the red color from 0 to 255
  */
-void digiLed_setColor(uint8_t led, uint8_t red, uint8_t green, uint8_t blue)
+void DigiLed_setColor(uint8_t led, uint8_t red, uint8_t green, uint8_t blue)
 {
-	if (digiLed_TestPosition(led) == RANGE_OK)
+	if (DigiLed_TestPosition(led) == RANGE_OK)
 	{
 		_digitalLedframe[led].FieldsIn.INIT = 0x7; // Set MSB first 3 bits to identify start of LED packet
 		_digitalLedframe[led].FieldsIn.GLOBAL = 0x1F; // Set led at maximum illumination
@@ -99,11 +99,11 @@ void digiLed_setColor(uint8_t led, uint8_t red, uint8_t green, uint8_t blue)
  * @param green intensity of the green color from 0 to 255
  * @param red intensity of the red color from 0 to 255
  */
-void digiLed_setAllColor(uint8_t red, uint8_t green, uint8_t blue)
+void DigiLed_setAllColor(uint8_t red, uint8_t green, uint8_t blue)
 {
 	for (int led = 0; led < LED_FRAME_SIZE; led++)
 	{
-		digiLed_setColor(led, red, green, blue);
+		DigiLed_setColor(led, red, green, blue);
 	}
 }
 
@@ -117,7 +117,7 @@ void digiLed_setAllColor(uint8_t red, uint8_t green, uint8_t blue)
  * @param led position of the led in the string
  * @param rgb color of led in RGB color scheme
  */
-void digiLed_setRGB(uint8_t led, uint32_t rgb)
+void DigiLed_setRGB(uint8_t led, uint32_t rgb)
 {
 	_digitalLedframe[led].FieldsIn.INIT = 0x7;
 	_digitalLedframe[led].FieldsIn.GLOBAL = 0x1F;
@@ -136,11 +136,11 @@ void digiLed_setRGB(uint8_t led, uint32_t rgb)
  * Colors can be set using defines from "APA102_colors.h"
  * @param rgb color of led in RGB color scheme
  */
-void digiLed_setAllRGB(uint32_t rgb)
+void DigiLed_setAllRGB(uint32_t rgb)
 {
 	for (int led = 0; led < LED_FRAME_SIZE; led++)
 	{
-		digiLed_setRGB(led, rgb);
+		DigiLed_setRGB(led, rgb);
 	}
 	_frameModified = TRUE;
 }
@@ -153,9 +153,9 @@ void digiLed_setAllRGB(uint32_t rgb)
  * @param led position of the led in the string
  * @param intensity of illumination
  */
-void digiLed_setLedIllumination(uint8_t led, uint8_t illumination)
+void DigiLed_setLedIllumination(uint8_t led, uint8_t illumination)
 {
-	if (digiLed_TestPosition(led) == RANGE_OK)
+	if (DigiLed_TestPosition(led) == RANGE_OK)
 	{
 		_digitalLedframe[led].FieldsIn.GLOBAL = illumination;
 	}
@@ -169,7 +169,7 @@ void digiLed_setLedIllumination(uint8_t led, uint8_t illumination)
  * setting illumination can interfere with individual RGB settings
  * @param intensity of illumination
  */
-void digiLed_setAllIllumination(uint8_t illumination)
+void DigiLed_setAllIllumination(uint8_t illumination)
 {
 	for (int led = 0; led < LED_FRAME_SIZE; led++)
 	{
@@ -183,9 +183,9 @@ void digiLed_setAllIllumination(uint8_t illumination)
  * @brief switch a single led off
  * @param led position of the led in the string to be switched off
  */
-void digiLed_setLedOff(uint8_t led)
+void DigiLed_setLedOff(uint8_t led)
 {
-	if (digiLed_TestPosition(led) == RANGE_OK)
+	if (DigiLed_TestPosition(led) == RANGE_OK)
 	{
 		_digitalLedframe[led].FieldsIn.GLOBAL = 0x00;
 	}
@@ -198,9 +198,9 @@ void digiLed_setLedOff(uint8_t led)
  * Using this function will preserve the active color settings for the led
  * @param led position of the led in the string to be switched on
  */
-void digiLed_setLedOn(uint8_t led)
+void DigiLed_setLedOn(uint8_t led)
 {
-	if (digiLed_TestPosition(led) == RANGE_OK)
+	if (DigiLed_TestPosition(led) == RANGE_OK)
 	{
 		_digitalLedframe[led].FieldsIn.GLOBAL = 0x1F;
 	}
@@ -212,7 +212,7 @@ void digiLed_setLedOn(uint8_t led)
  * @brief update led string
  * @param set true to force update leds and false to update only when frame is modified
  */
-void digiLed_update(uint8_t forceUpdate)
+void DigiLed_update(uint8_t forceUpdate)
 {
 	if(_frameModified | forceUpdate)
 	{
@@ -253,7 +253,7 @@ void digiLed_update(uint8_t forceUpdate)
  * @brief get LED frame size
  * @return LED frame size
  */
-uint8_t digiLed_getFrameSize(void)
+uint8_t DigiLed_getFrameSize(void)
 {
 	return LED_FRAME_SIZE;
 }
@@ -264,7 +264,7 @@ uint8_t digiLed_getFrameSize(void)
  * @param led led position
  * @return result of evaluation ad define.
  */
-uint8_t digiLed_TestPosition(uint8_t led)
+uint8_t DigiLed_TestPosition(uint8_t led)
 {
 	uint8_t returnValue = OUT_OF_RANGE;
 	if (led < LED_FRAME_SIZE)

@@ -11,8 +11,8 @@
  */
 
 /* includes */
-#include "LightEffekt.h"
-#include "digitalled.h"
+#include "LightEffect.h"
+#include "DigiLed.h"
 
 
 /* functions */
@@ -85,8 +85,8 @@ void LightEffect_fadeIn(uint32_t argb, uint8_t Steps, uint8_t DelayTime)
 	/* fade in */
 	for(int16_t i = Steps; i >= 0; i--)
 	{
-		digiLed_setAllColor((r*(Steps-i))/Steps, (g*(Steps-i))/Steps, (b*(Steps-i))/Steps);
-		digiLed_update(FALSE);
+		DigiLed_setAllColor((r*(Steps-i))/Steps, (g*(Steps-i))/Steps, (b*(Steps-i))/Steps);
+		DigiLed_update(FALSE);
 		HAL_Delay(DelayTime);
 	}
 }
@@ -112,8 +112,8 @@ void LightEffect_fadeOut(uint32_t argb, uint8_t Steps, uint8_t DelayTime)
 	/* fade out */
 	for(int16_t i = 0; i <= Steps; i++)
 	{
-		digiLed_setAllColor((r*(Steps-i))/Steps, (g*(Steps-i))/Steps, (b*(Steps-i))/Steps);
-		digiLed_update(FALSE);
+		DigiLed_setAllColor((r*(Steps-i))/Steps, (g*(Steps-i))/Steps, (b*(Steps-i))/Steps);
+		DigiLed_update(FALSE);
 		HAL_Delay(DelayTime);
 	}
 }
@@ -145,8 +145,8 @@ void LightEffect_fadeInFadeOut(uint32_t argb, uint8_t Steps, uint8_t DelayTime)
  */
 void LightEffect_setColor(uint32_t argb)
 {
-	digiLed_setAllRGB(argb);		// set send vector to Color
-	digiLed_update(FALSE);			// send vector to LEDs
+	DigiLed_setAllRGB(argb);		// set send vector to Color
+	DigiLed_update(FALSE);			// send vector to LEDs
 }
 
 /**
@@ -179,10 +179,10 @@ void LightEffect_fadeToColor(uint32_t argb, uint8_t Steps, uint8_t DelayTime)
 	/* fade to Color */
 	for(int16_t i = 0; i <= Steps; i++)
 	{
-		digiLed_setAllColor((r_old * Steps + i*step_r)/Steps,
+		DigiLed_setAllColor((r_old * Steps + i*step_r)/Steps,
 							(g_old * Steps + i*step_g)/Steps,
 							(b_old * Steps + i*step_b)/Steps);
-		digiLed_update(FALSE);
+		DigiLed_update(FALSE);
 		HAL_Delay(DelayTime);
 	}
 
@@ -195,52 +195,52 @@ void LightEffect_fadeToColor(uint32_t argb, uint8_t Steps, uint8_t DelayTime)
 
 void LightEffect_rotatingRight(uint32_t foreground, uint32_t background, uint8_t DelayTime)
 {
-	digiLed_setAllRGB(background);
-	digiLed_setRGB(1, foreground);
-	digiLed_setRGB(5, foreground);
-	digiLed_setRGB(10, foreground);
-	digiLed_setRGB(14, foreground);
-	digiLed_update(FALSE);
+	DigiLed_setAllRGB(background);
+	DigiLed_setRGB(1, foreground);
+	DigiLed_setRGB(5, foreground);
+	DigiLed_setRGB(10, foreground);
+	DigiLed_setRGB(14, foreground);
+	DigiLed_update(FALSE);
 	HAL_Delay(DelayTime);
 
-	digiLed_setAllRGB(background);
-	digiLed_setRGB(2, foreground);
-	digiLed_setRGB(6, foreground);
-	digiLed_setRGB(9, foreground);
-	digiLed_setRGB(13, foreground);
-	digiLed_update(FALSE);
+	DigiLed_setAllRGB(background);
+	DigiLed_setRGB(2, foreground);
+	DigiLed_setRGB(6, foreground);
+	DigiLed_setRGB(9, foreground);
+	DigiLed_setRGB(13, foreground);
+	DigiLed_update(FALSE);
 	HAL_Delay(DelayTime);
 
-	digiLed_setAllRGB(background);
-	digiLed_setRGB(3, foreground);
-	digiLed_setRGB(6, foreground);
-	digiLed_setRGB(9, foreground);
-	digiLed_setRGB(12, foreground);
-	digiLed_update(FALSE);
+	DigiLed_setAllRGB(background);
+	DigiLed_setRGB(3, foreground);
+	DigiLed_setRGB(6, foreground);
+	DigiLed_setRGB(9, foreground);
+	DigiLed_setRGB(12, foreground);
+	DigiLed_update(FALSE);
 	HAL_Delay(DelayTime);
 
-	digiLed_setAllRGB(background);
-	digiLed_setRGB(7, foreground);
-	digiLed_setRGB(6, foreground);
-	digiLed_setRGB(9, foreground);
-	digiLed_setRGB(8, foreground);
-	digiLed_update(FALSE);
+	DigiLed_setAllRGB(background);
+	DigiLed_setRGB(7, foreground);
+	DigiLed_setRGB(6, foreground);
+	DigiLed_setRGB(9, foreground);
+	DigiLed_setRGB(8, foreground);
+	DigiLed_update(FALSE);
 	HAL_Delay(DelayTime);
 
-	digiLed_setAllRGB(background);
-	digiLed_setRGB(11, foreground);
-	digiLed_setRGB(10, foreground);
-	digiLed_setRGB(5, foreground);
-	digiLed_setRGB(4, foreground);
-	digiLed_update(FALSE);
+	DigiLed_setAllRGB(background);
+	DigiLed_setRGB(11, foreground);
+	DigiLed_setRGB(10, foreground);
+	DigiLed_setRGB(5, foreground);
+	DigiLed_setRGB(4, foreground);
+	DigiLed_update(FALSE);
 	HAL_Delay(DelayTime);
 
-	digiLed_setAllRGB(background);
-	digiLed_setRGB(15, foreground);
-	digiLed_setRGB(10, foreground);
-	digiLed_setRGB(5, foreground);
-	digiLed_setRGB(0, foreground);
-	digiLed_update(FALSE);
+	DigiLed_setAllRGB(background);
+	DigiLed_setRGB(15, foreground);
+	DigiLed_setRGB(10, foreground);
+	DigiLed_setRGB(5, foreground);
+	DigiLed_setRGB(0, foreground);
+	DigiLed_update(FALSE);
 	HAL_Delay(DelayTime);
 }
 
@@ -249,52 +249,52 @@ void LightEffect_rotatingRight(uint32_t foreground, uint32_t background, uint8_t
 
 void LightEffect_rotatingLeft(uint32_t foreground, uint32_t background, uint8_t DelayTime)
 {
-	digiLed_setAllRGB(background);
-	digiLed_setRGB(1, foreground);
-	digiLed_setRGB(5, foreground);
-	digiLed_setRGB(10, foreground);
-	digiLed_setRGB(14, foreground);
-	digiLed_update(FALSE);
+	DigiLed_setAllRGB(background);
+	DigiLed_setRGB(1, foreground);
+	DigiLed_setRGB(5, foreground);
+	DigiLed_setRGB(10, foreground);
+	DigiLed_setRGB(14, foreground);
+	DigiLed_update(FALSE);
 	HAL_Delay(DelayTime);
 
-	digiLed_setAllRGB(background);
-	digiLed_setRGB(15, foreground);
-	digiLed_setRGB(10, foreground);
-	digiLed_setRGB(5, foreground);
-	digiLed_setRGB(0, foreground);
-	digiLed_update(FALSE);
+	DigiLed_setAllRGB(background);
+	DigiLed_setRGB(15, foreground);
+	DigiLed_setRGB(10, foreground);
+	DigiLed_setRGB(5, foreground);
+	DigiLed_setRGB(0, foreground);
+	DigiLed_update(FALSE);
 	HAL_Delay(DelayTime);
 
-	digiLed_setAllRGB(background);
-	digiLed_setRGB(11, foreground);
-	digiLed_setRGB(10, foreground);
-	digiLed_setRGB(5, foreground);
-	digiLed_setRGB(4, foreground);
-	digiLed_update(FALSE);
+	DigiLed_setAllRGB(background);
+	DigiLed_setRGB(11, foreground);
+	DigiLed_setRGB(10, foreground);
+	DigiLed_setRGB(5, foreground);
+	DigiLed_setRGB(4, foreground);
+	DigiLed_update(FALSE);
 	HAL_Delay(DelayTime);
 
-	digiLed_setAllRGB(background);
-	digiLed_setRGB(7, foreground);
-	digiLed_setRGB(6, foreground);
-	digiLed_setRGB(9, foreground);
-	digiLed_setRGB(8, foreground);
-	digiLed_update(FALSE);
+	DigiLed_setAllRGB(background);
+	DigiLed_setRGB(7, foreground);
+	DigiLed_setRGB(6, foreground);
+	DigiLed_setRGB(9, foreground);
+	DigiLed_setRGB(8, foreground);
+	DigiLed_update(FALSE);
 	HAL_Delay(DelayTime);
 
-	digiLed_setAllRGB(background);
-	digiLed_setRGB(3, foreground);
-	digiLed_setRGB(6, foreground);
-	digiLed_setRGB(9, foreground);
-	digiLed_setRGB(12, foreground);
-	digiLed_update(FALSE);
+	DigiLed_setAllRGB(background);
+	DigiLed_setRGB(3, foreground);
+	DigiLed_setRGB(6, foreground);
+	DigiLed_setRGB(9, foreground);
+	DigiLed_setRGB(12, foreground);
+	DigiLed_update(FALSE);
 	HAL_Delay(DelayTime);
 
-	digiLed_setAllRGB(background);
-	digiLed_setRGB(2, foreground);
-	digiLed_setRGB(6, foreground);
-	digiLed_setRGB(9, foreground);
-	digiLed_setRGB(13, foreground);
-	digiLed_update(FALSE);
+	DigiLed_setAllRGB(background);
+	DigiLed_setRGB(2, foreground);
+	DigiLed_setRGB(6, foreground);
+	DigiLed_setRGB(9, foreground);
+	DigiLed_setRGB(13, foreground);
+	DigiLed_update(FALSE);
 	HAL_Delay(DelayTime);
 }
 
@@ -303,50 +303,50 @@ void LightEffect_rotatingLeft(uint32_t foreground, uint32_t background, uint8_t 
 
 void LightEffect_rotatingFadeRight(uint32_t foreground, uint32_t background, uint8_t DelayTime)
 {
-	digiLed_setAllRGB(background);
-	digiLed_update(FALSE);
+	DigiLed_setAllRGB(background);
+	DigiLed_update(FALSE);
 	HAL_Delay(DelayTime);
 
-	digiLed_setRGB(1, foreground);
-	digiLed_setRGB(5, foreground);
-	digiLed_setRGB(10, foreground);
-	digiLed_setRGB(14, foreground);
-	digiLed_update(FALSE);
+	DigiLed_setRGB(1, foreground);
+	DigiLed_setRGB(5, foreground);
+	DigiLed_setRGB(10, foreground);
+	DigiLed_setRGB(14, foreground);
+	DigiLed_update(FALSE);
 	HAL_Delay(DelayTime);
 
-	digiLed_setRGB(2, foreground);
-	digiLed_setRGB(6, foreground);
-	digiLed_setRGB(9, foreground);
-	digiLed_setRGB(13, foreground);
-	digiLed_update(FALSE);
+	DigiLed_setRGB(2, foreground);
+	DigiLed_setRGB(6, foreground);
+	DigiLed_setRGB(9, foreground);
+	DigiLed_setRGB(13, foreground);
+	DigiLed_update(FALSE);
 	HAL_Delay(DelayTime);
 
-	digiLed_setRGB(3, foreground);
-	digiLed_setRGB(6, foreground);
-	digiLed_setRGB(9, foreground);
-	digiLed_setRGB(12, foreground);
-	digiLed_update(FALSE);
+	DigiLed_setRGB(3, foreground);
+	DigiLed_setRGB(6, foreground);
+	DigiLed_setRGB(9, foreground);
+	DigiLed_setRGB(12, foreground);
+	DigiLed_update(FALSE);
 	HAL_Delay(DelayTime);
 
-	digiLed_setRGB(7, foreground);
-	digiLed_setRGB(6, foreground);
-	digiLed_setRGB(9, foreground);
-	digiLed_setRGB(8, foreground);
-	digiLed_update(FALSE);
+	DigiLed_setRGB(7, foreground);
+	DigiLed_setRGB(6, foreground);
+	DigiLed_setRGB(9, foreground);
+	DigiLed_setRGB(8, foreground);
+	DigiLed_update(FALSE);
 	HAL_Delay(DelayTime);
 
-	digiLed_setRGB(11, foreground);
-	digiLed_setRGB(10, foreground);
-	digiLed_setRGB(5, foreground);
-	digiLed_setRGB(4, foreground);
-	digiLed_update(FALSE);
+	DigiLed_setRGB(11, foreground);
+	DigiLed_setRGB(10, foreground);
+	DigiLed_setRGB(5, foreground);
+	DigiLed_setRGB(4, foreground);
+	DigiLed_update(FALSE);
 	HAL_Delay(DelayTime);
 
-	digiLed_setRGB(15, foreground);
-	digiLed_setRGB(10, foreground);
-	digiLed_setRGB(5, foreground);
-	digiLed_setRGB(0, foreground);
-	digiLed_update(FALSE);
+	DigiLed_setRGB(15, foreground);
+	DigiLed_setRGB(10, foreground);
+	DigiLed_setRGB(5, foreground);
+	DigiLed_setRGB(0, foreground);
+	DigiLed_update(FALSE);
 	//HAL_Delay(DelayTime);
 }
 
@@ -355,50 +355,50 @@ void LightEffect_rotatingFadeRight(uint32_t foreground, uint32_t background, uin
 
 void LightEffect_rotatingFadeLeft(uint32_t foreground, uint32_t background, uint8_t DelayTime)
 {
-	digiLed_setAllRGB(background);
-	digiLed_update(FALSE);
+	DigiLed_setAllRGB(background);
+	DigiLed_update(FALSE);
 	HAL_Delay(DelayTime);
 
-	digiLed_setRGB(1, foreground);
-	digiLed_setRGB(5, foreground);
-	digiLed_setRGB(10, foreground);
-	digiLed_setRGB(14, foreground);
-	digiLed_update(FALSE);
+	DigiLed_setRGB(1, foreground);
+	DigiLed_setRGB(5, foreground);
+	DigiLed_setRGB(10, foreground);
+	DigiLed_setRGB(14, foreground);
+	DigiLed_update(FALSE);
 	HAL_Delay(DelayTime);
 
-	digiLed_setRGB(15, foreground);
-	digiLed_setRGB(10, foreground);
-	digiLed_setRGB(5, foreground);
-	digiLed_setRGB(0, foreground);
-	digiLed_update(FALSE);
+	DigiLed_setRGB(15, foreground);
+	DigiLed_setRGB(10, foreground);
+	DigiLed_setRGB(5, foreground);
+	DigiLed_setRGB(0, foreground);
+	DigiLed_update(FALSE);
 	HAL_Delay(DelayTime);
 
-	digiLed_setRGB(11, foreground);
-	digiLed_setRGB(10, foreground);
-	digiLed_setRGB(5, foreground);
-	digiLed_setRGB(4, foreground);
-	digiLed_update(FALSE);
+	DigiLed_setRGB(11, foreground);
+	DigiLed_setRGB(10, foreground);
+	DigiLed_setRGB(5, foreground);
+	DigiLed_setRGB(4, foreground);
+	DigiLed_update(FALSE);
 	HAL_Delay(DelayTime);
 
-	digiLed_setRGB(7, foreground);
-	digiLed_setRGB(6, foreground);
-	digiLed_setRGB(9, foreground);
-	digiLed_setRGB(8, foreground);
-	digiLed_update(FALSE);
+	DigiLed_setRGB(7, foreground);
+	DigiLed_setRGB(6, foreground);
+	DigiLed_setRGB(9, foreground);
+	DigiLed_setRGB(8, foreground);
+	DigiLed_update(FALSE);
 	HAL_Delay(DelayTime);
 
-	digiLed_setRGB(3, foreground);
-	digiLed_setRGB(6, foreground);
-	digiLed_setRGB(9, foreground);
-	digiLed_setRGB(12, foreground);
-	digiLed_update(FALSE);
+	DigiLed_setRGB(3, foreground);
+	DigiLed_setRGB(6, foreground);
+	DigiLed_setRGB(9, foreground);
+	DigiLed_setRGB(12, foreground);
+	DigiLed_update(FALSE);
 	HAL_Delay(DelayTime);
 
-	digiLed_setRGB(2, foreground);
-	digiLed_setRGB(6, foreground);
-	digiLed_setRGB(9, foreground);
-	digiLed_setRGB(13, foreground);
-	digiLed_update(FALSE);
+	DigiLed_setRGB(2, foreground);
+	DigiLed_setRGB(6, foreground);
+	DigiLed_setRGB(9, foreground);
+	DigiLed_setRGB(13, foreground);
+	DigiLed_update(FALSE);
 	//HAL_Delay(DelayTime);
 }
 
@@ -407,12 +407,12 @@ void LightEffect_scanLeftToRight(uint32_t foreground, uint32_t background, uint8
 {
 	for(int8_t n=3; n>=0; n--)
 	{
-		digiLed_setAllRGB(background);
-		digiLed_setRGB(0+n, foreground);
-		digiLed_setRGB(4+n, foreground);
-		digiLed_setRGB(8+n, foreground);
-		digiLed_setRGB(12+n, foreground);
-		digiLed_update(FALSE);
+		DigiLed_setAllRGB(background);
+		DigiLed_setRGB(0+n, foreground);
+		DigiLed_setRGB(4+n, foreground);
+		DigiLed_setRGB(8+n, foreground);
+		DigiLed_setRGB(12+n, foreground);
+		DigiLed_update(FALSE);
 		HAL_Delay(DelayTime);
 	}
 }
@@ -421,12 +421,12 @@ void LightEffect_scanRightToLeft(uint32_t foreground, uint32_t background, uint8
 {
 	for(uint8_t n=0; n<4; n++)
 	{
-		digiLed_setAllRGB(background);
-		digiLed_setRGB(0+n, foreground);
-		digiLed_setRGB(4+n, foreground);
-		digiLed_setRGB(8+n, foreground);
-		digiLed_setRGB(12+n, foreground);
-		digiLed_update(FALSE);
+		DigiLed_setAllRGB(background);
+		DigiLed_setRGB(0+n, foreground);
+		DigiLed_setRGB(4+n, foreground);
+		DigiLed_setRGB(8+n, foreground);
+		DigiLed_setRGB(12+n, foreground);
+		DigiLed_update(FALSE);
 		HAL_Delay(DelayTime);
 	}
 }
@@ -436,12 +436,12 @@ void LightEffect_scanUpToDown(uint32_t foreground, uint32_t background, uint8_t 
 {
 	for(uint8_t n=0; n<4; n++)
 	{
-		digiLed_setAllRGB(background);
-		digiLed_setRGB(0+n*4, foreground);
-		digiLed_setRGB(1+n*4, foreground);
-		digiLed_setRGB(2+n*4, foreground);
-		digiLed_setRGB(3+n*4, foreground);
-		digiLed_update(FALSE);
+		DigiLed_setAllRGB(background);
+		DigiLed_setRGB(0+n*4, foreground);
+		DigiLed_setRGB(1+n*4, foreground);
+		DigiLed_setRGB(2+n*4, foreground);
+		DigiLed_setRGB(3+n*4, foreground);
+		DigiLed_update(FALSE);
 		HAL_Delay(DelayTime);
 	}
 }
@@ -450,12 +450,12 @@ void LightEffect_scanDownToUp(uint32_t foreground, uint32_t background, uint8_t 
 {
 	for(int8_t n=3; n>=0; n--)
 	{
-		digiLed_setAllRGB(background);
-		digiLed_setRGB(0+n*4, foreground);
-		digiLed_setRGB(1+n*4, foreground);
-		digiLed_setRGB(2+n*4, foreground);
-		digiLed_setRGB(3+n*4, foreground);
-		digiLed_update(FALSE);
+		DigiLed_setAllRGB(background);
+		DigiLed_setRGB(0+n*4, foreground);
+		DigiLed_setRGB(1+n*4, foreground);
+		DigiLed_setRGB(2+n*4, foreground);
+		DigiLed_setRGB(3+n*4, foreground);
+		DigiLed_update(FALSE);
 		HAL_Delay(DelayTime);
 	}
 }
@@ -464,30 +464,30 @@ void LightEffect_scanDownToUp(uint32_t foreground, uint32_t background, uint8_t 
 
 void LightEffect_fillLeftToRight(uint32_t foreground, uint32_t background, uint8_t DelayTime)
 {
-	digiLed_setAllRGB(background);
+	DigiLed_setAllRGB(background);
 
 	for(int8_t n=3; n>=0; n--)
 	{
-		digiLed_setRGB(0+n, foreground);
-		digiLed_setRGB(4+n, foreground);
-		digiLed_setRGB(8+n, foreground);
-		digiLed_setRGB(12+n, foreground);
-		digiLed_update(FALSE);
+		DigiLed_setRGB(0+n, foreground);
+		DigiLed_setRGB(4+n, foreground);
+		DigiLed_setRGB(8+n, foreground);
+		DigiLed_setRGB(12+n, foreground);
+		DigiLed_update(FALSE);
 		HAL_Delay(DelayTime);
 	}
 }
 
 void LightEffect_fillRightToLeft(uint32_t foreground, uint32_t background, uint8_t DelayTime)
 {
-	digiLed_setAllRGB(background);
+	DigiLed_setAllRGB(background);
 
 	for(uint8_t n=0; n<4; n++)
 	{
-		digiLed_setRGB(0+n, foreground);
-		digiLed_setRGB(4+n, foreground);
-		digiLed_setRGB(8+n, foreground);
-		digiLed_setRGB(12+n, foreground);
-		digiLed_update(FALSE);
+		DigiLed_setRGB(0+n, foreground);
+		DigiLed_setRGB(4+n, foreground);
+		DigiLed_setRGB(8+n, foreground);
+		DigiLed_setRGB(12+n, foreground);
+		DigiLed_update(FALSE);
 		HAL_Delay(DelayTime);
 	}
 }
@@ -495,90 +495,90 @@ void LightEffect_fillRightToLeft(uint32_t foreground, uint32_t background, uint8
 
 void LightEffect_fillUpToDown(uint32_t foreground, uint32_t background, uint8_t DelayTime)
 {
-	digiLed_setAllRGB(background);
+	DigiLed_setAllRGB(background);
 
 	for(uint8_t n=0; n<4; n++)
 	{
-		digiLed_setRGB(0+n*4, foreground);
-		digiLed_setRGB(1+n*4, foreground);
-		digiLed_setRGB(2+n*4, foreground);
-		digiLed_setRGB(3+n*4, foreground);
-		digiLed_update(FALSE);
+		DigiLed_setRGB(0+n*4, foreground);
+		DigiLed_setRGB(1+n*4, foreground);
+		DigiLed_setRGB(2+n*4, foreground);
+		DigiLed_setRGB(3+n*4, foreground);
+		DigiLed_update(FALSE);
 		HAL_Delay(DelayTime);
 	}
 }
 
 void LightEffect_fillDownToUp(uint32_t foreground, uint32_t background, uint8_t DelayTime)
 {
-	digiLed_setAllRGB(background);
+	DigiLed_setAllRGB(background);
 
 	for(int8_t n=3; n>=0; n--)
 	{
-		digiLed_setRGB(0+n*4, foreground);
-		digiLed_setRGB(1+n*4, foreground);
-		digiLed_setRGB(2+n*4, foreground);
-		digiLed_setRGB(3+n*4, foreground);
-		digiLed_update(FALSE);
+		DigiLed_setRGB(0+n*4, foreground);
+		DigiLed_setRGB(1+n*4, foreground);
+		DigiLed_setRGB(2+n*4, foreground);
+		DigiLed_setRGB(3+n*4, foreground);
+		DigiLed_update(FALSE);
 		HAL_Delay(DelayTime);
 	}
 }
 
 void LightEffect_fill2Lines(uint32_t foreground, uint32_t background, uint8_t DelayTime)
 {
-	digiLed_setAllRGB(background);
+	DigiLed_setAllRGB(background);
 
 	for(int8_t n=0; n<4; n++)
 	{
-		digiLed_setRGB(0+n, foreground);
-		digiLed_setRGB(4+n, foreground);
-		digiLed_setRGB(11-n, foreground);
-		digiLed_setRGB(15-n, foreground);
-		digiLed_update(FALSE);
+		DigiLed_setRGB(0+n, foreground);
+		DigiLed_setRGB(4+n, foreground);
+		DigiLed_setRGB(11-n, foreground);
+		DigiLed_setRGB(15-n, foreground);
+		DigiLed_update(FALSE);
 		HAL_Delay(DelayTime);
 	}
 }
 
 void LightEffect_fill4Lines(uint32_t foreground, uint32_t background, uint8_t DelayTime)
 {
-	digiLed_setAllRGB(background);
+	DigiLed_setAllRGB(background);
 
 	for(int8_t n=0; n<4; n++)
 	{
-		digiLed_setRGB(0+n, foreground);
-		digiLed_setRGB(7-n, foreground);
-		digiLed_setRGB(8+n, foreground);
-		digiLed_setRGB(15-n, foreground);
-		digiLed_update(FALSE);
+		DigiLed_setRGB(0+n, foreground);
+		DigiLed_setRGB(7-n, foreground);
+		DigiLed_setRGB(8+n, foreground);
+		DigiLed_setRGB(15-n, foreground);
+		DigiLed_update(FALSE);
 		HAL_Delay(DelayTime);
 	}
 }
 
 void LightEffect_fill2Columns(uint32_t foreground, uint32_t background, uint8_t DelayTime)
 {
-	digiLed_setAllRGB(background);
+	DigiLed_setAllRGB(background);
 
 	for(int8_t n=0; n<4; n++)
 	{
-		digiLed_setRGB(0+n*4, foreground);
-		digiLed_setRGB(1+n*4, foreground);
-		digiLed_setRGB(14-n*4, foreground);
-		digiLed_setRGB(15-n*4, foreground);
-		digiLed_update(FALSE);
+		DigiLed_setRGB(0+n*4, foreground);
+		DigiLed_setRGB(1+n*4, foreground);
+		DigiLed_setRGB(14-n*4, foreground);
+		DigiLed_setRGB(15-n*4, foreground);
+		DigiLed_update(FALSE);
 		HAL_Delay(DelayTime);
 	}
 }
 
 void LightEffect_fill4Columns(uint32_t foreground, uint32_t background, uint8_t DelayTime)
 {
-	digiLed_setAllRGB(background);
+	DigiLed_setAllRGB(background);
 
 	for(int8_t n=0; n<4; n++)
 	{
-		digiLed_setRGB(0+n*4, foreground);
-		digiLed_setRGB(13-n*4, foreground);
-		digiLed_setRGB(2+n*4, foreground);
-		digiLed_setRGB(15-n*4, foreground);
-		digiLed_update(FALSE);
+		DigiLed_setRGB(0+n*4, foreground);
+		DigiLed_setRGB(13-n*4, foreground);
+		DigiLed_setRGB(2+n*4, foreground);
+		DigiLed_setRGB(15-n*4, foreground);
+		DigiLed_update(FALSE);
 		HAL_Delay(DelayTime);
 	}
 }

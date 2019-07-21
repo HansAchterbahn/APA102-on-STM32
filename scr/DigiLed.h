@@ -62,18 +62,18 @@ union
 
 
 /* functions */
-void digiLed_init();
-void digiLed_setColor(uint8_t led, uint8_t red, uint8_t green, uint8_t blue);
-void digiLed_setAllColor(uint8_t red, uint8_t green, uint8_t blue);
-void digiLed_setRGB(uint8_t led, uint32_t rgb);
-void digiLed_setAllRGB(uint32_t rgb);
-void digiLed_setLedIllumination(uint8_t led, uint8_t illumination);
-void digiLed_setAllIllumination(uint8_t illumination);
-void digiLed_setLedOff(uint8_t led);
-void digiLed_setLedOn(uint8_t led);
-void digiLed_update(uint8_t forceUpdate);
-uint8_t digiLed_getFrameSize(void);
-uint8_t digiLed_TestPosition(uint8_t led);
+void DigiLed_init(SPI_HandleTypeDef *hspi);
+void DigiLed_setColor(uint8_t led, uint8_t red, uint8_t green, uint8_t blue);
+void DigiLed_setAllColor(uint8_t red, uint8_t green, uint8_t blue);
+void DigiLed_setRGB(uint8_t led, uint32_t rgb);
+void DigiLed_setAllRGB(uint32_t rgb);
+void DigiLed_setLedIllumination(uint8_t led, uint8_t illumination);
+void DigiLed_setAllIllumination(uint8_t illumination);
+void DigiLed_setLedOff(uint8_t led);
+void DigiLed_setLedOn(uint8_t led);
+void DigiLed_update(uint8_t forceUpdate);
+uint8_t DigiLed_getFrameSize(void);
+uint8_t DigiLed_TestPosition(uint8_t led);
 
 
 
