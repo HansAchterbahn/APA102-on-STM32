@@ -1,0 +1,12 @@
+../Core/Src/DigiLed.c:54:6:DigiLed_init	24	static
+../Core/Src/DigiLed.c:82:6:DigiLed_setColor	24	static
+../Core/Src/DigiLed.c:102:6:DigiLed_setAllColor	24	static
+../Core/Src/DigiLed.c:120:6:DigiLed_setRGB	16	static
+../Core/Src/DigiLed.c:139:6:DigiLed_setAllRGB	24	static
+../Core/Src/DigiLed.c:156:6:DigiLed_setLedIllumination	16	static
+../Core/Src/DigiLed.c:172:6:DigiLed_setAllIllumination	24	static
+../Core/Src/DigiLed.c:186:6:DigiLed_setLedOff	16	static
+../Core/Src/DigiLed.c:201:6:DigiLed_setLedOn	16	static
+../Core/Src/DigiLed.c:215:6:DigiLed_update	32	static
+../Core/Src/DigiLed.c:256:9:DigiLed_getFrameSize	4	static
+../Core/Src/DigiLed.c:267:9:DigiLed_TestPosition	24	static
