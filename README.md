@@ -30,9 +30,6 @@ _Have fun with this library, improve and share it!_
 
 To get this library working do the following steps.
 
-![STM32CubeMx (Picture: STM32)](https://www.st.com/content/ccc/fragment/product_related/rpn_information/board_photo/74/79/d3/ee/5c/37/4e/7e/stm32cubemx.jpg/files/stm32cubemx.jpg/_jcr_content/translations/en.stm32cubemx.jpg)
-
-
 #### STM32CubeMx
 
 * use [STM32CubeMx](https://www.st.com/en/development-tools/stm32cubemx.html) to create a new STM32 project based on your board or microcontroller
@@ -40,7 +37,7 @@ To get this library working do the following steps.
 	* __Frame Format:__ Motorola
 	* __Data Size:__ 8 Bits
 	* __First Bit:__ MSB First
-	* __Prescaler:__ 32
+	* __Prescaler:__ << Baudrate needs to be between 800 and 1200 kHz/s >>
 	* __Clock Polarity (CPOL):__ Low
 	* __Clock Phase (CPHA):__ 1 Edge
 	* __CRC Calculation:__ Disabled
@@ -55,23 +52,13 @@ To get this library working do the following steps.
 * add the file
 	* __DigiLed.h__ to __Inc__ folder
 	* __DigiLed.c__ to __Scr__ folder
-* open the __main.c__ file and add the line `#include "DigiLed.h"` in the __USER CODE Includes__ section
-	* it should looks like this
-
-```c
-...
-/* USER CODE BEGIN Includes */
-#include "DigiLed.h"
-/* USER CODE END Includes */
-...
-```
-
 * initial the DigiLed library by using the function `DigiLed_init(*hspi)`
 * it expects at __*hspi__ a pointer to the __SPI handler__ which is responsible for the SPI handling of the APA102 LEDs
 * to the end add the LED frame size by changing the `LED_FRAME_SIZE` value in the DigiLed.h file to the amount of LEDs you are working with
 * ___now you are ready to go !___
 	* try changing the color of all LEDs by using 'void DigiLed_setAllColor(red, green, blue)' or
 	* try to change the color of a single LED by using 'DigiLed_setColor(led, red, green, blue)'
+	* To make your changes take effect, you must apply the DigiLed_update() function at the end of your changes
 * the files __LightEffect.h/.c__ contain a library for simple light effects on a 4×4 APA102 matrix (`LED_FRAME_SIZE = 16`)
 	* you can easily include them in the same way in your project sources and modify the effects to have quick success with your project
 
